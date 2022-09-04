@@ -1,0 +1,124 @@
+.mcard {
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,1.0);
+    transition: 0.3s;
+    width: 90%;
+    height: 80%;
+    padding-left: 10px;
+    margin: auto;
+    margin-top: 10px;
+    position: relative;
+
+}
+
+.submitBtn {
+  position: absolute;
+  top: 40%;
+  left: 43%;
+  width: 200px;
+  height: 100px;
+  font-size: 50px;
+  background-color: lightblue;
+  transition: background-color 2s;
+}
+
+.submitBtn:hover {
+  background-color: blue;
+}
+
+  /* .mcard:hover {
+    box-shadow: 0 8px 16px 0 red;
+  } */
+
+.mcontainer {
+    /* padding: 10px 16px; */
+    border-style: solid;
+    border-width: 2px;
+    width: 80%;
+    height: 500px;
+    margin: auto;
+}
+
+.reviewcontainer {
+  /* padding: 10px 16px; */
+  border-style: solid;
+  border-width: 2px;
+  width: 80%;
+  height: 100vh;
+  margin: auto;
+  overflow: scroll;
+}
+.reviewcard {
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,1.0);
+  transition: 0.3s;
+  width: 90%;
+  height: 40%;
+  padding-left: 10px;
+  margin: auto;
+  margin-top: 10px;
+  position: relative;
+
+}
+.heading {
+  padding: 5px 10px;
+  font-size: 40px;
+  border-bottom: 2px solid slateblue;
+  width: 100%;
+
+}
+.quiz {
+  font-size: 30px;
+}
+
+.labelMargin {
+  padding-left: 10px;
+  font-size: 20px;
+}
+
+.button {
+  margin-left: auto;
+  margin-right: 0;
+  background-color: blue;
+  position: absolute;
+  top: 0;
+}
+
+.check {
+  position: absolute;
+  top: 100px;
+  right: 10px;
+
+}
+@media (prefers-reduced-motion: no-preference) {
+.check {
+  animation: App-logo-spin  1s linear;
+}
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+
+
+span {
+  line-height: 60px;
+}
+
+.delete {
+  float: right;
+  margin-right: 10px;
+}
+
+.edit {
+  float: right;
+ 
+}
+
+
+
+
