@@ -3,6 +3,7 @@ import {
   BrowserRouter,
   Routes, // instead of "Switch"
   Route,
+  Redirect,
 } from "react-router-dom";
 import routes from "../routes";
 

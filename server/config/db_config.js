@@ -1,20 +1,22 @@
-const mysql = require('mysql');
-require('dotenv').config();
+// database onfiguration
+const mysql = require("mysql");
+require("dotenv").config();
 
 const connection = mysql.createConnection({
-    host : process.env.DB_HOST,
-    user : process.env.DB_USER,
-    password : process.env.DB_PWD,
-    database : process.env.DB_DATABASE,
-    multipleStatements : true
-})
+  host: process.env.DB_HOST,
+  user: process.env.DB_USER,
+  password: process.env.DB_PWD,
+  database: process.env.DB_DATABASE,
+  multipleStatements: true,
+});
 
+// test database connection
 connection.connect((err) => {
-    if(err){
-        console.log("Not connected")
-    }else{
-        console.log('Connected')
-    }
-})
+  if (err) {
+    console.log("Not connected");
+  } else {
+    console.log("Connected");
+  }
+});
 
 module.exports = connection;

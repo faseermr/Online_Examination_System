@@ -1,13 +1,12 @@
 .mcard {
-    box-shadow: 0 4px 8px 0 rgba(0,0,0,1.0);
-    transition: 0.3s;
-    width: 90%;
-    height: 80%;
-    padding-left: 10px;
-    margin: auto;
-    margin-top: 10px;
-    position: relative;
-
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 1);
+  transition: 0.3s;
+  width: 90%;
+  height: 80%;
+  padding-left: 10px;
+  margin: auto;
+  margin-top: 10px;
+  position: relative;
 }
 
 .submitBtn {
@@ -25,17 +24,17 @@
   background-color: blue;
 }
 
-  /* .mcard:hover {
+/* .mcard:hover {
     box-shadow: 0 8px 16px 0 red;
   } */
 
 .mcontainer {
-    /* padding: 10px 16px; */
-    border-style: solid;
-    border-width: 2px;
-    width: 80%;
-    height: 500px;
-    margin: auto;
+  /* padding: 10px 16px; */
+  border-style: solid;
+  border-width: 2px;
+  width: 80%;
+  height: 500px;
+  margin: auto;
 }
 
 .reviewcontainer {
@@ -48,7 +47,7 @@
   overflow: scroll;
 }
 .reviewcard {
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,1.0);
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 1);
   transition: 0.3s;
   width: 90%;
   height: 40%;
@@ -56,14 +55,12 @@
   margin: auto;
   margin-top: 10px;
   position: relative;
-
 }
 .heading {
   padding: 5px 10px;
   font-size: 40px;
   border-bottom: 2px solid slateblue;
   width: 100%;
-
 }
 .quiz {
   font-size: 30px;
@@ -86,12 +83,11 @@
   position: absolute;
   top: 100px;
   right: 10px;
-
 }
 @media (prefers-reduced-motion: no-preference) {
-.check {
-  animation: App-logo-spin  1s linear;
-}
+  .check {
+    animation: App-logo-spin 1s linear;
+  }
 }
 
 @keyframes App-logo-spin {
@@ -102,8 +98,6 @@
     transform: rotate(360deg);
   }
 }
-
-
 
 span {
   line-height: 60px;
@@ -116,9 +110,30 @@ span {
 
 .edit {
   float: right;
- 
 }
 
+.questionNo {
+  display: flex;
+  justify-content: center;
+}
 
-
-
+.singleNo {
+  width: 60px;
+  height: 60px;
+  background-color: black;
+  color: aliceblue;
+  font-size: large;
+  padding: 1%;
+  border: 1px solid white;
+  cursor: pointer;
+}
+.singleNo_active {
+  width: 60px;
+  height: 60px;
+  background-color: blue;
+  color: aliceblue;
+  font-size: large;
+  padding: 1%;
+  border: 1px solid white;
+  cursor: pointer;
+}
