@@ -57,7 +57,7 @@ const Signin = () => {
         }) => (
           <form onSubmit={handleSubmit} className="login-form">
             <h1 className="login-heading">Login</h1>
-            <label className="login-label">Username</label>
+            <label className="login-label">Email</label>
 
             <input
               name="email"
