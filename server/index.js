@@ -1,32 +1,31 @@
-const express = require('express');
-const app = express()
-const cors = require('cors');
+const express = require("express");
+const app = express();
+const cors = require("cors");
 
-require('dotenv').config();
-const PORT = process.env.PORT || 4000
-const dbConn = require('./config/db_config')
-
+require("dotenv").config();
+const PORT = process.env.PORT;
+const dbConn = require("./config/db_config");
 
 app.use(cors());
 app.use(express.json());
 
-app.get('/test',(req,res) => {
-    res.send('Hello World')
-})
+app.get("/test", (req, res) => {
+  res.send("Hello World");
+});
 
-const questionRoutes = require('./router/question')
-const answerRoutes = require('./router/answer')
-const loginRoutes = require('./router/student')
-const subjectRoutes = require('./router/subject')
-const admin = require('./router/admin')
-const classroom = require('./router/classroom')
+const questionRoutes = require("./router/question");
+const answerRoutes = require("./router/answer");
+const loginRoutes = require("./router/student");
+const subjectRoutes = require("./router/subject");
+const admin = require("./router/admin");
+const classroom = require("./router/classroom");
 
-app.use('/question',questionRoutes)
-app.use('/answer',answerRoutes)
-app.use('/login',loginRoutes)
-app.use('/subject',subjectRoutes)
-app.use('/admin',admin)
-app.use('/classroom',classroom )
+app.use("/question", questionRoutes);
+app.use("/answer", answerRoutes);
+app.use("/login", loginRoutes);
+app.use("/subject", subjectRoutes);
+app.use("/admin", admin);
+app.use("/classroom", classroom);
 
 // app.all('*',(req,res,next) => {
 //     const err = new Error(`Requested URL ${req.path} not found`);
@@ -44,5 +43,5 @@ app.use('/classroom',classroom )
 // })
 
 app.listen(PORT, () => {
-    console.log(`Server running on ${PORT}`)
-})
+  console.log(`Server running on ${PORT}`);
+});
