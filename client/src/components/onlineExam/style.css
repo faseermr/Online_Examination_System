@@ -126,6 +126,7 @@ span {
   padding: 1%;
   border: 1px solid white;
   cursor: pointer;
+  position: relative;
 }
 .singleNo_active {
   width: 60px;
@@ -137,3 +138,18 @@ span {
   border: 1px solid white;
   cursor: pointer;
 }
+
+/* .singleNo_active::after {
+  content: "";
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  background-color: red;
+  color: aliceblue;
+  font-size: large;
+  padding: 1%;
+  border: 1px solid white;
+  cursor: pointer;
+} */
