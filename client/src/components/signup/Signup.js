@@ -59,14 +59,24 @@ const Signup = () => {
             placeholder="Enter Full name"
             name="sname"
             onChange={handleChange}
+            required
           />
         </div>
         <div className="mb-3">
           <label>Grade</label>
-          <select className="form-select" name="grade" onChange={handleChange}>
+          <select
+            className="form-select"
+            name="grade"
+            onChange={handleChange}
+            required
+          >
             <option selected>-- Select One --</option>
             {classlist.map((val, idx) => {
-              return <option value={val.clsid}>{val.grade}</option>;
+              return (
+                <option key={idx} value={val.clsid}>
+                  {val.grade}
+                </option>
+              );
             })}
           </select>
         </div>
@@ -78,6 +88,7 @@ const Signup = () => {
             placeholder="Enter email"
             name="email"
             onChange={handleChange}
+            required
           />
         </div>
         <div className="mb-3">
@@ -88,6 +99,7 @@ const Signup = () => {
             className="form-control"
             placeholder="Enter password"
             onChange={handleChange}
+            required
           />
         </div>
         <div className="d-grid">

@@ -2,6 +2,8 @@ import React, { useState, useEffect, useContext } from "react";
 import subjectServices from "../../service/subjectServices";
 import { UserContext } from "../../context/userContext";
 import { useNavigate } from "react-router-dom";
+import AdminExamTable from "./AdminExamTable";
+import StudentExamTable from "./StudentExamTable";
 
 const ExamTable = () => {
   const navigate = useNavigate();
@@ -12,7 +14,7 @@ const ExamTable = () => {
 
   const getAllSubject = async () => {
     const res = await subjectServices.getAllSubject();
-    console.log(res.data);
+    //console.log(res.data);
     setSubjectList(res.data);
   };
 
@@ -42,108 +44,17 @@ const ExamTable = () => {
   return (
     <div className="container">
       {admin.length > 0 ? (
-        <table>
-          <thead>
-            <tr>
-              <th className="col-1" scope="col">
-                #
-              </th>
-              <th scope="col">Subject</th>
-              <th scope="col">Grade</th>
-              <th scope="col">View</th>
-              <th scope="col">Status</th>
-              <th className="col-2" scope="col">
-                Action
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            {subjectList.map((val) => {
-              return (
-                <tr key={val.subid}>
-                  <td>{val.subid}</td>
-                  <td>{val.name}</td>
-                  <td>{val.grade}</td>
-                  <td>
-                    <a
-                      onClick={() => navigate(`/question/subject/${val.subid}`)}
-                      className="text-primary"
-                      style={{ textDecoration: "none", cursor: "pointer" }}
-                    >
-                      {" "}
-                      Click
-                    </a>
-                  </td>
-                  <td>{val.status == 0 ? "Deactive" : "Active"} </td>
-                  <td>
-                    {val.status == 0 ? (
-                      <button
-                        className="btn btn-success"
-                        onClick={() => updateSubjectStatus(1, val.subid)}
-                      >
-                        Active
-                      </button>
-                    ) : (
-                      <button
-                        className="btn btn-danger"
-                        onClick={() => updateSubjectStatus(0, val.subid)}
-                      >
-                        Deactive
-                      </button>
-                    )}
-                  </td>
-                </tr>
-              );
-            })}
-          </tbody>
-        </table>
+        <AdminExamTable
+          subjectList={subjectList}
+          navigate={navigate}
+          updateSubjectStatus={updateSubjectStatus}
+        />
       ) : (
-        <table class="table">
-          <thead>
-            <tr>
-              <th scope="col">#</th>
-              <th scope="col">Subject</th>
-              <th scope="col">Grade</th>
-              <th>Action</th>
-            </tr>
-          </thead>
-          <tbody>
-            {subjectListByGrade.map((val) => {
-              return (
-                <tr key={val.subid}>
-                  <td>{val.subid}</td>
-                  <td>{val.name}</td>
-                  <td>{val.grade}</td>
-                  <td>
-                    {val.submit_id > 0 ? (
-                      <a
-                        onClick={() =>
-                          navigate(`/question/review/${user[0].stuid}`)
-                        }
-                        className="text-primary"
-                        style={{ textDecoration: "none", cursor: "pointer" }}
-                      >
-                        {" "}
-                        Review{" "}
-                      </a>
-                    ) : (
-                      <a
-                        onClick={() =>
-                          navigate(`/question/student/${val.subid}`)
-                        }
-                        className="text-primary"
-                        style={{ textDecoration: "none", cursor: "pointer" }}
-                      >
-                        {" "}
-                        Click{" "}
-                      </a>
-                    )}
-                  </td>
-                </tr>
-              );
-            })}
-          </tbody>
-        </table>
+        <StudentExamTable
+          subjectListByGrade={subjectListByGrade}
+          navigate={navigate}
+          user={user}
+        />
       )}
     </div>
   );

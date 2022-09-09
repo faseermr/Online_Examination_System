@@ -5,7 +5,7 @@ const { studentLogin, studentSignup } = require("../model/student");
 
 module.exports = {
   studentLogin: (req, res) => {
-    //console.log(req.body);
+    // console.log(req.body);
     const { email, password } = req.body;
     studentLogin(email, password, (err, student) => {
       if (err) res.send(err);
