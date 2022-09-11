@@ -19,7 +19,9 @@ const loginRoutes = require("./router/student");
 const subjectRoutes = require("./router/subject");
 const admin = require("./router/admin");
 const classroom = require("./router/classroom");
+const { errorHandler } = require("./helper/errorHandler");
 
+// api routes
 app.use("/question", questionRoutes);
 app.use("/answer", answerRoutes);
 app.use("/login", loginRoutes);
@@ -27,20 +29,14 @@ app.use("/subject", subjectRoutes);
 app.use("/admin", admin);
 app.use("/classroom", classroom);
 
-// app.all('*',(req,res,next) => {
-//     const err = new Error(`Requested URL ${req.path} not found`);
-//     err.statusCode = 404;
-//     next(err)
-// })
+app.all("*", (req, res, next) => {
+  const err = new Error(`Requested URL ${req.path} not found`);
+  err.statusCode = 404;
+  next(err);
+});
 
-// app.use((err,req,res,next) => {
-//     const statusCode = err.statusCode || 500;
-//     res.status(statusCode).json({
-//         success : 0,
-//         message : err.message,
-//         stack : err.stack
-//     })
-// })
+// global error handler
+app.use(errorHandler);
 
 app.listen(PORT, () => {
   console.log(`Server running on ${PORT}`);

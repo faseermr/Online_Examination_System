@@ -1,4 +1,4 @@
-.App {
+/* .App {
   text-align: center;
 }
 
@@ -35,25 +35,25 @@
   to {
     transform: rotate(360deg);
   }
-}
+} */
 
-
-table, th, td {
+table,
+th,
+td {
   border: 1px solid black;
 }
 
 table {
   width: 100%;
   margin: 20px;
- 
 }
-th,td {
+th,
+td {
   padding: 10px;
 }
 
 table thead tr th.id {
   width: 10%;
-  
 }
 
 table thead tr th.action {
