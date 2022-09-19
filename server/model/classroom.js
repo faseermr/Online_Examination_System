@@ -18,7 +18,7 @@ module.exports = {
       [grade],
       (err, res) => {
         if (err) {
-          console.log(err);
+          //   console.log(err);
           result(err, res);
         } else {
           console.log(res);
@@ -31,7 +31,7 @@ module.exports = {
   deleteGrade: (grade, result) => {
     dbConn.query(`Delete from class where clsid =?`, grade, (err, res) => {
       if (err) {
-        console.log(err);
+        // console.log(err);
         result(err, res);
       } else {
         result(null, res);
@@ -44,8 +44,9 @@ module.exports = {
       `Update class set grade = ? where clsid=?`,
       [grade, id],
       (err, res) => {
+        // console.log(res);
         if (err) {
-          console.log(err);
+          //   console.log(err);
           result(err, res);
         } else {
           result(null, res);

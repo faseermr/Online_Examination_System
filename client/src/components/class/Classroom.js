@@ -1,7 +1,5 @@
 import React, { Component } from "react";
 import classServices from "../../service/classServices";
-import { BiEdit } from "react-icons/bi";
-import { RiDeleteBinLine, RiEdit2Line } from "react-icons/ri";
 import {
   addClassAction,
   getAllClassAction,
@@ -9,6 +7,7 @@ import {
   deleteClassAction,
 } from "../../redux/action/classAction";
 import { connect } from "react-redux";
+import ClassroomList from "./ClassroomList";
 
 class Classroom extends Component {
   constructor(props) {
@@ -24,10 +23,6 @@ class Classroom extends Component {
       isEdit: false,
       gradeError: "",
     };
-  }
-
-  sayHello() {
-    alert("Hello!");
   }
 
   handleChange(event) {
@@ -46,15 +41,8 @@ class Classroom extends Component {
     });
   }
 
-  // handleChange = (e) => {
-  //   const {name,value} = e.target;
-  //   this.setState({
-  //    [name]:value
-  //   })
-  // }
-
   handleUpdate(e, data) {
-    console.log(data);
+    //console.log(data);
     this.setState({
       editData: data,
       grade: data.grade,
@@ -140,7 +128,7 @@ class Classroom extends Component {
   render() {
     // console.log(this.props.state.classData.classList);
     let { classList } = this.props.state.classData;
-    //  console.log(classList);
+    //console.log(classList);
     let gradeError = this.state.gradeError;
     return (
       <React.Fragment>
@@ -166,40 +154,11 @@ class Classroom extends Component {
             </form>
           </div>
           <div>
-            <table>
-              <thead>
-                <tr>
-                  <th className="id">ID</th>
-                  <th>Grade</th>
-                  <th className="action">Action</th>
-                </tr>
-              </thead>
-              <tbody>
-                {classList &&
-                  classList.map((val, idx) => {
-                    return (
-                      <tr key={idx}>
-                        <td>{val.clsid}</td>
-                        <td>{val.grade}</td>
-                        <td>
-                          <button
-                            onClick={(e) =>
-                              this.handleUpdate.bind(this)(e, val)
-                            }
-                          >
-                            <RiEdit2Line />
-                          </button>
-                          <button
-                            onClick={() => this.props.deleteClass(val.clsid)}
-                          >
-                            <RiDeleteBinLine />
-                          </button>
-                        </td>
-                      </tr>
-                    );
-                  })}
-              </tbody>
-            </table>
+            <ClassroomList
+              classList={classList}
+              deleteClass={this.props.deleteClass}
+              handleUpdate={this.handleUpdate}
+            />
           </div>
         </div>
       </React.Fragment>

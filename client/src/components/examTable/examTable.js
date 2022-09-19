@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
+import { useNavigate } from "react-router-dom";
 import subjectServices from "../../service/subjectServices";
 import { UserContext } from "../../context/userContext";
-import { useNavigate } from "react-router-dom";
 import AdminExamTable from "./AdminExamTable";
 import StudentExamTable from "./StudentExamTable";
 

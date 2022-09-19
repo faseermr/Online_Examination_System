@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import classServices from "../../service/classServices";
 import subjectServices from "../../service/subjectServices";
-import { RiDeleteBinLine, RiEdit2Line } from "react-icons/ri";
+
 import {
   addSubjectAction,
   getAllSubjectAction,
@@ -10,6 +10,7 @@ import {
 } from "../../redux/action/subjectAction";
 import { getAllClassAction } from "../../redux/action/classAction";
 import { connect } from "react-redux";
+import SubjectList from "./SubjectList";
 
 class Subject extends Component {
   constructor(props) {
@@ -92,25 +93,9 @@ class Subject extends Component {
     }
   };
 
-  // getAllClass() {
-  //   classServices.getAllClass().then((res) => {
-  //     this.setState({
-  //       classList: res.data.data,
-  //     });
-  //   });
-  // }
-
-  // getAllSubject() {
-  //   subjectServices.getAllSubject().then((res) => {
-  //     this.setState({
-  //       subjectList: res.data,
-  //     });
-  //   });
-  // }
-
   componentDidMount() {
     this.props.getAllClass();
-    // this.getAllSubject();
+
     this.props.getAllSubject();
   }
 
@@ -163,38 +148,11 @@ class Subject extends Component {
             </form>
           </div>
           <div>
-            <table>
-              <thead>
-                <tr>
-                  <th className="id">ID</th>
-                  <th>Subject</th>
-                  <th>Grade</th>
-                  <th className="action">Action</th>
-                </tr>
-              </thead>
-
-              <tbody>
-                {subjectList.map((val, idx) => {
-                  return (
-                    <tr key={idx}>
-                      <td>{val.subid}</td>
-                      <td>{val.name}</td>
-                      <td>{val.grade}</td>
-                      <td>
-                        <button onClick={() => this.handleUpdate(val)}>
-                          <RiEdit2Line />
-                        </button>
-                        <button
-                          onClick={() => this.props.deleteSubject(val.subid)}
-                        >
-                          <RiDeleteBinLine />
-                        </button>
-                      </td>
-                    </tr>
-                  );
-                })}
-              </tbody>
-            </table>
+            <SubjectList
+              subjectList={subjectList}
+              handleUpdate={this.handleUpdate}
+              deleteSubject={this.props.deleteSubject}
+            />
           </div>
         </div>
       </React.Fragment>
