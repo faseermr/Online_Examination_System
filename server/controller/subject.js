@@ -42,7 +42,7 @@ module.exports = {
   },
   // add subject
   create: (req, res) => {
-    //console.log(req.body);
+    //console.log("body", req.body);
     create(req.body, (err, subject) => {
       if (err) res.send(err);
 

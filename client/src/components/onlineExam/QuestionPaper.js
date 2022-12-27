@@ -51,7 +51,7 @@ const QuestionPaper = (props) => {
         user[0].stuid
       );
       if (res.data.data.length > 0) {
-        //   console.log(res.data.data);
+        //console.log(res.data.data);
         setQuestion(res.data.data);
         setQlength(res.data.data.length);
         //question.push({qid:res.data.data.length,qfield :"Press submit button"})
