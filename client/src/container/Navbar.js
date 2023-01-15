@@ -1,40 +1,40 @@
-import React, { useEffect, useState } from "react";
-// {UserContext} from '../context/userContext'
+import React, { useEffect, useState, useContext } from "react";
+import { UserContext } from "../context/userContext";
 import { Link } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import {
-  getAdminDataAction,
-  getUserDataAction,
-  notLoginUserAction,
-} from "../redux/action/authAction";
+// import { useDispatch, useSelector } from "react-redux";
+// import {
+//   getAdminDataAction,
+//   getUserDataAction,
+//   notLoginUserAction,
+// } from "../redux/action/authAction";
 
 const Navbar = () => {
-  //const {userName} = useContext(UserContext)
-  const userData = useSelector((state) => state.user);
-  const dispatch = useDispatch();
-  const [user, setUser] = useState([]);
-  const [admin, setAdmin] = useState([]);
+  const { userName } = useContext(UserContext);
+  // const userData = useSelector((state) => state.user);
+  // const dispatch = useDispatch();
+  // const [user, setUser] = useState([]);
+  // const [admin, setAdmin] = useState([]);
   const userToken = JSON.parse(localStorage.getItem("student"));
   const adminToken = JSON.parse(localStorage.getItem("admin"));
 
-  useEffect(() => {
-    dispatch(getAdminDataAction());
-  }, [dispatch]);
+  // useEffect(() => {
+  //   dispatch(getAdminDataAction());
+  // }, [dispatch]);
 
-  useEffect(() => {
-    dispatch(getUserDataAction());
-    dispatch(getAdminDataAction());
-  }, [dispatch]);
+  // useEffect(() => {
+  //   dispatch(getUserDataAction());
+  //   dispatch(getAdminDataAction());
+  // }, [dispatch]);
 
-  useEffect(() => {
-    if (userData.userdata) {
-      setUser(userData.userdata.student);
-    }
+  // useEffect(() => {
+  //   if (userData.userdata) {
+  //     setUser(userData.userdata.student);
+  //   }
 
-    if (userData.adminData) {
-      setAdmin(userData.adminData.admin);
-    }
-  }, [userData]);
+  //   if (userData.adminData) {
+  //     setAdmin(userData.adminData.admin);
+  //   }
+  // }, [userData]);
 
   const logOut = () => {
     localStorage.removeItem("student");
@@ -71,8 +71,10 @@ const Navbar = () => {
               Online Exam System
             </Link>
             <li className="nav-item nav-link text-success">
-              {user.map((val) => val.name)}
-              {admin.map((val) => val.name)}
+              {userToken ? userName : null}
+              {adminToken ? "Admin" : null}
+              {/* {user.map((val) => val.name)}
+              {admin.map((val) => val.name)} */}
             </li>
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
               {!userToken && !adminToken ? (

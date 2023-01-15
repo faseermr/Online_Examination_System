@@ -3,7 +3,7 @@ import React from "react";
 const StudentExamTable = ({ subjectListByGrade, navigate, user }) => {
   return (
     <React.Fragment>
-      <table class="table">
+      <table className="table">
         <thead>
           <tr>
             <th scope="col">#</th>

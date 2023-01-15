@@ -1,42 +1,42 @@
 import React, { useState, useContext, useEffect } from "react";
 import { UserContext } from "../context/userContext";
-import { useDispatch, useSelector } from "react-redux";
-import {
-  getAdminDataAction,
-  getUserDataAction,
-  notLoginUserAction,
-} from "../redux/action/authAction";
+// import { useDispatch, useSelector } from "react-redux";
+// import {
+//   getAdminDataAction,
+//   getUserDataAction,
+//   notLoginUserAction,
+// } from "../redux/action/authAction";
 
 const Dashboard = () => {
-  //const {user,userName} = useContext(UserContext)
-  const userData = useSelector((state) => state.user);
-  const res = useSelector((state) => state.admin);
-  const dispatch = useDispatch();
-  const [user, setUser] = useState([]);
-  const [admin, setAdmin] = useState([]);
+  const { user, admin } = useContext(UserContext);
+  // const userData = useSelector((state) => state.user);
+  // const res = useSelector((state) => state.admin);
+  // const dispatch = useDispatch();
+  // const [user, setUser] = useState([]);
+  // const [admin, setAdmin] = useState([]);
 
-  useEffect(() => {
-    dispatch(getAdminDataAction());
-  }, [dispatch]);
+  // useEffect(() => {
+  //   dispatch(getAdminDataAction());
+  // }, [dispatch]);
 
-  useEffect(() => {
-    dispatch(getUserDataAction());
-    dispatch(getAdminDataAction());
-  }, [dispatch]);
+  // useEffect(() => {
+  //   dispatch(getUserDataAction());
+  //   dispatch(getAdminDataAction());
+  // }, [dispatch]);
 
-  useEffect(() => {
-    if (userData.userdata) {
-      setUser(userData.userdata.student);
-    }
+  // useEffect(() => {
+  //   if (userData.userdata) {
+  //     setUser(userData.userdata.student);
+  //   }
 
-    if (userData.adminData) {
-      setAdmin(userData.adminData.admin);
-    }
-    //    if(result.admin.admin){
-    //     setAdmin(result.admin)
-    //    }
-    // console.log(userData);
-  }, [userData]);
+  //   if (userData.adminData) {
+  //     setAdmin(userData.adminData.admin);
+  //   }
+  //   //    if(result.admin.admin){
+  //   //     setAdmin(result.admin)
+  //   //    }
+  //   // console.log(userData);
+  // }, [userData]);
 
   return (
     <div
@@ -64,7 +64,7 @@ const Dashboard = () => {
               </div>
               <div>
                 <label>Grade :</label>
-                <span> {val.clsid}</span>
+                <span> {val.grade}</span>
               </div>
             </div>
           </React.Fragment>

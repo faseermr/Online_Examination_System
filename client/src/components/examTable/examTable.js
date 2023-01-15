@@ -4,13 +4,22 @@ import subjectServices from "../../service/subjectServices";
 import { UserContext } from "../../context/userContext";
 import AdminExamTable from "./AdminExamTable";
 import StudentExamTable from "./StudentExamTable";
+// import { useDispatch, useSelector } from "react-redux";
+// import {
+//   getAdminDataAction,
+//   getUserDataAction,
+//   notLoginUserAction,
+// } from "../../redux/action/authAction";
 
 const ExamTable = () => {
   const navigate = useNavigate();
-
+  // const dispatch = useDispatch();
+  // const userData = useSelector((state) => state.user);
   const { user, admin } = useContext(UserContext);
   const [subjectList, setSubjectList] = useState([]);
   const [subjectListByGrade, setSubjectListByGrade] = useState([]);
+  // const [user, setUser] = useState([]);
+  // const [admin, setAdmin] = useState([]);
 
   const getAllSubject = async () => {
     const res = await subjectServices.getAllSubject();
@@ -40,6 +49,26 @@ const ExamTable = () => {
   useEffect(() => {
     getSubjectByGrade();
   }, [user]);
+
+  // useEffect(() => {
+  //   dispatch(getUserDataAction());
+  //   dispatch(getAdminDataAction());
+  // }, [dispatch]);
+
+  // useEffect(() => {
+  //   if (userData.userdata) {
+  //     console.log(userData.userdata.student);
+  //     setUser(userData.userdata.student);
+  //   }
+
+  //   if (userData.adminData) {
+  //     setAdmin(userData.adminData.admin);
+  //   }
+  //   //    if(result.admin.admin){
+  //   //     setAdmin(result.admin)
+  //   //    }
+  //   // console.log(userData);
+  // }, [userData]);
 
   return (
     <div className="container">

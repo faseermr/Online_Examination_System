@@ -31,12 +31,12 @@ const Signin = () => {
               password: data.password,
             })
             .then((res) => {
-              console.log(res);
+              //console.log(res);
               if (res.data.error) {
                 alert(res.data.error);
               } else {
                 alert(res.data.message);
-                console.log(res.data);
+                //console.log(res.data);
                 localStorage.setItem("student", JSON.stringify(res.data));
                 //dispatch(getUserData())
                 navigate(`/dashboard`);

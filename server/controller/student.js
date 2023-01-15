@@ -22,10 +22,7 @@ module.exports = {
           );
           res.json({
             message: "Successfully Login",
-            student: student,
-            id: student.stuid,
-            sname: student.name,
-            classid: student.clsid,
+            student,
             token,
           });
         }

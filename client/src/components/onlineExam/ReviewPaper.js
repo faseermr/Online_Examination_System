@@ -3,21 +3,43 @@ import examServices from "../../service/examServices";
 import { UserContext } from "../../context/userContext";
 import { Checkmark } from "react-checkmark";
 import { AiFillCloseCircle } from "react-icons/ai";
+// import { useDispatch, useSelector } from "react-redux";
+// import {
+//   getAdminDataAction,
+//   getUserDataAction,
+//   notLoginUserAction,
+// } from "../../redux/action/authAction";
 import "./style.css";
 import { useParams } from "react-router-dom";
 
 const ReviewPaper = (props) => {
   const { user, admin } = useContext(UserContext);
+  // const dispatch = useDispatch();
+  // const userData = useSelector((state) => state.user);
   const [question, setQuestion] = useState([]);
   const [questionNo, setQuestionNo] = useState(1);
+  // const [user, setUser] = useState([]);
+  // const [admin, setAdmin] = useState([]);
   //const { student } = props.match.params;
   //const { student } = useParams()
 
   const getStudentAnswer = async () => {
     const res = await examServices.getStudentAnswer(user[0].stuid);
-    console.log(res.data);
+    // console.log(res.data);
     setQuestion(res.data);
   };
+
+  // useEffect(() => {
+  //   dispatch(getUserDataAction());
+  //   dispatch(getAdminDataAction());
+  // }, [dispatch]);
+
+  // useEffect(() => {
+  //   if (userData.userdata) {
+  //     //console.log(userData.userdata.student);
+  //     setUser(userData.userdata.student);
+  //   }
+  // }, [userData]);
 
   useEffect(() => {
     getStudentAnswer();
