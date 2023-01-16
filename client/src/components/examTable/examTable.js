@@ -1,29 +1,25 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import subjectServices from "../../service/subjectServices";
-import { UserContext } from "../../context/userContext";
 import AdminExamTable from "./AdminExamTable";
 import StudentExamTable from "./StudentExamTable";
-// import { useDispatch, useSelector } from "react-redux";
-// import {
-//   getAdminDataAction,
-//   getUserDataAction,
-//   notLoginUserAction,
-// } from "../../redux/action/authAction";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  getAdminDataAction,
+  getUserDataAction,
+} from "../../redux/action/authAction";
 
 const ExamTable = () => {
   const navigate = useNavigate();
-  // const dispatch = useDispatch();
-  // const userData = useSelector((state) => state.user);
-  const { user, admin } = useContext(UserContext);
+  const dispatch = useDispatch();
+  const userData = useSelector((state) => state.user);
   const [subjectList, setSubjectList] = useState([]);
   const [subjectListByGrade, setSubjectListByGrade] = useState([]);
-  // const [user, setUser] = useState([]);
-  // const [admin, setAdmin] = useState([]);
+  const [user, setUser] = useState([]);
+  const [admin, setAdmin] = useState([]);
 
   const getAllSubject = async () => {
     const res = await subjectServices.getAllSubject();
-    //console.log(res.data);
     setSubjectList(res.data);
   };
 
@@ -32,7 +28,6 @@ const ExamTable = () => {
       user[0].clsid,
       user[0].stuid
     );
-    //console.log(res.data)
     setSubjectListByGrade(res.data);
   };
 
@@ -50,25 +45,21 @@ const ExamTable = () => {
     getSubjectByGrade();
   }, [user]);
 
-  // useEffect(() => {
-  //   dispatch(getUserDataAction());
-  //   dispatch(getAdminDataAction());
-  // }, [dispatch]);
+  useEffect(() => {
+    dispatch(getUserDataAction());
+    dispatch(getAdminDataAction());
+  }, [dispatch]);
 
-  // useEffect(() => {
-  //   if (userData.userdata) {
-  //     console.log(userData.userdata.student);
-  //     setUser(userData.userdata.student);
-  //   }
+  useEffect(() => {
+    if (userData.userdata) {
+      console.log(userData.userdata.student);
+      setUser(userData.userdata.student);
+    }
 
-  //   if (userData.adminData) {
-  //     setAdmin(userData.adminData.admin);
-  //   }
-  //   //    if(result.admin.admin){
-  //   //     setAdmin(result.admin)
-  //   //    }
-  //   // console.log(userData);
-  // }, [userData]);
+    if (userData.adminData) {
+      setAdmin(userData.adminData.admin);
+    }
+  }, [userData]);
 
   return (
     <div className="container">

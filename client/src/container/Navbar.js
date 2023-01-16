@@ -1,40 +1,37 @@
-import React, { useEffect, useState, useContext } from "react";
-import { UserContext } from "../context/userContext";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-// import { useDispatch, useSelector } from "react-redux";
-// import {
-//   getAdminDataAction,
-//   getUserDataAction,
-//   notLoginUserAction,
-// } from "../redux/action/authAction";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  getAdminDataAction,
+  getUserDataAction,
+} from "../redux/action/authAction";
 
 const Navbar = () => {
-  const { userName } = useContext(UserContext);
-  // const userData = useSelector((state) => state.user);
-  // const dispatch = useDispatch();
-  // const [user, setUser] = useState([]);
-  // const [admin, setAdmin] = useState([]);
+  const userData = useSelector((state) => state.user);
+  const dispatch = useDispatch();
+  const [user, setUser] = useState([]);
+  const [admin, setAdmin] = useState([]);
   const userToken = JSON.parse(localStorage.getItem("student"));
   const adminToken = JSON.parse(localStorage.getItem("admin"));
 
-  // useEffect(() => {
-  //   dispatch(getAdminDataAction());
-  // }, [dispatch]);
+  useEffect(() => {
+    dispatch(getAdminDataAction());
+  }, [dispatch]);
 
-  // useEffect(() => {
-  //   dispatch(getUserDataAction());
-  //   dispatch(getAdminDataAction());
-  // }, [dispatch]);
+  useEffect(() => {
+    dispatch(getUserDataAction());
+    dispatch(getAdminDataAction());
+  }, [dispatch]);
 
-  // useEffect(() => {
-  //   if (userData.userdata) {
-  //     setUser(userData.userdata.student);
-  //   }
+  useEffect(() => {
+    if (userData.userdata) {
+      setUser(userData.userdata.student);
+    }
 
-  //   if (userData.adminData) {
-  //     setAdmin(userData.adminData.admin);
-  //   }
-  // }, [userData]);
+    if (userData.adminData) {
+      setAdmin(userData.adminData.admin);
+    }
+  }, [userData]);
 
   const logOut = () => {
     localStorage.removeItem("student");
@@ -71,10 +68,8 @@ const Navbar = () => {
               Online Exam System
             </Link>
             <li className="nav-item nav-link text-success">
-              {userToken ? userName : null}
-              {adminToken ? "Admin" : null}
-              {/* {user.map((val) => val.name)}
-              {admin.map((val) => val.name)} */}
+              {user.map((val) => val.name)}
+              {admin.map((val) => val.name)}
             </li>
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
               {!userToken && !adminToken ? (
@@ -124,9 +119,7 @@ const Navbar = () => {
                       </li>
                     </React.Fragment>
                   ) : null}
-                  {/* <li className="nav-item nav-link">
-              <Link to="/question">Question</Link>  
-              </li> */}
+
                   <li className="nav-item nav-link">
                     <Link to="/examtable" style={{ textDecoration: "none" }}>
                       Exam Table

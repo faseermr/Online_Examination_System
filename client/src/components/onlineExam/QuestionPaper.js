@@ -1,17 +1,21 @@
-import { Formik } from "formik";
-import React, { useEffect, useState, useContext } from "react";
-import { UserContext } from "../../context/userContext";
+import React, { useEffect, useState } from "react";
 import examServices from "../../service/examServices";
 import { useParams, useNavigate } from "react-router-dom";
 import { BiEdit } from "react-icons/bi";
 import { RiDeleteBinLine } from "react-icons/ri";
 import "./style.css";
 import QuestionNo from "./QuestionNo";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  getAdminDataAction,
+  getUserDataAction,
+} from "../../redux/action/authAction";
 
 const QuestionPaper = (props) => {
   const { subject } = useParams();
   const navigate = useNavigate();
-  const { userId, user, admin } = useContext(UserContext);
+  const dispatch = useDispatch();
+  const userData = useSelector((state) => state.user);
   const [question, setQuestion] = useState([]);
   const [indexFirst, setIndexFirst] = useState(0);
   const [lastIndex, setLastIndex] = useState(1);
@@ -19,26 +23,19 @@ const QuestionPaper = (props) => {
   const [answer, setAnswer] = useState("");
   const [qlength, setQlength] = useState("");
   const [refresh, setRefresh] = useState(false);
-  // const getAllQuestion = async () => {
-  //     const res =await examServices.getAllQuestion()
-  //     if(res.data){
-  //         console.log(res.data.data)
-  //         setQuestion(res.data.data);
-  //     }
-  // }
+  const [user, setUser] = useState([]);
+  const [admin, setAdmin] = useState([]);
 
   const answerQuestion = async (questionid) => {
     if (answer) {
-      // console.log("Answer :", answer);
       await examServices
         .answerQuestion({
           qid: questionid,
-          stuid: userId,
+          stuid: user[0].stuid,
           ans: answer,
         })
         .then((res) => {
           setAnswer("");
-          //nextQuestion();
         });
     }
   };
@@ -51,11 +48,8 @@ const QuestionPaper = (props) => {
         user[0].stuid
       );
       if (res.data.data.length > 0) {
-        //console.log(res.data.data);
         setQuestion(res.data.data);
         setQlength(res.data.data.length);
-        //question.push({qid:res.data.data.length,qfield :"Press submit button"})
-        //   console.log(question);
       }
     }
   };
@@ -96,7 +90,7 @@ const QuestionPaper = (props) => {
     if (option) {
       await examServices
         .submitAnswer({
-          student: userId,
+          student: user[0].stuid,
           subject: subject,
         })
         .then((res) => {
@@ -117,26 +111,12 @@ const QuestionPaper = (props) => {
     }
   };
 
-  // const answerByStudent = async (stuid) => {
-  //      const res = awa(it examServices.answerByStudent(stuid)
-  //      if(res.data.length > 0){
-  //         console.log(res.data);
-  //         setQuestion(res.data);
-  //     }else{
-  //         getAllQuestion()
-  //     }
-  // }
-
   useEffect(() => {
     getQuestionBySubject(subject);
   }, [subject, admin]);
 
   useEffect(() => {
-    // getAllQuestion()
-
     getQuestionBySubjectAndStudent(subject);
-
-    // console.log(user);
   }, [subject, user]);
 
   useEffect(() => {
@@ -148,12 +128,23 @@ const QuestionPaper = (props) => {
         val.checked = false;
       }
     });
-    //   console.log(lastIndex);
   }, [indexFirst, lastIndex, user]);
 
   useEffect(() => {
-    //  console.log(subject);
-  }, []);
+    dispatch(getUserDataAction());
+    dispatch(getAdminDataAction());
+  }, [dispatch]);
+
+  useEffect(() => {
+    if (userData.userdata) {
+      console.log(userData.userdata.student);
+      setUser(userData.userdata.student);
+    }
+
+    if (userData.adminData) {
+      setAdmin(userData.adminData.admin);
+    }
+  }, [userData]);
 
   return (
     <React.Fragment>
