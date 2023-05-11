@@ -46,17 +46,16 @@ module.exports = {
   // },
 
   getAnswerByStudent: (student, result) => {
-    console.log(student);
     dbConn.query(
       `SELECT * FROM question INNER JOIN answer on question.qid = answer.qid
                       WHERE answer.stuid = ?`,
       [student],
       (err, res) => {
         if (err) {
-          console.log(err);
+          //      console.log(err);
           result(err, res);
         } else {
-          console.log(res);
+          //    console.log(res);
           result(null, res);
         }
       }

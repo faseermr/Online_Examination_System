@@ -19,7 +19,7 @@ const ReviewPaper = (props) => {
   const [admin, setAdmin] = useState([]);
 
   const getStudentAnswer = async () => {
-    const res = await examServices.getStudentAnswer(user[0].stuid);
+    const res = await examServices.answerByStudent(user[0].stuid);
 
     setQuestion(res.data);
   };

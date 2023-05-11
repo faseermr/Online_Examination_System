@@ -53,6 +53,7 @@ module.exports = {
   update: (req, res) => {
     const { subid } = req.params;
     const { subject, clsid } = req.body;
+    console.log(req.body);
     update(subid, req.body, (err, subject) => {
       if (err) res.send(err);
 
